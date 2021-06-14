@@ -1,0 +1,24 @@
+h5
+ | Title: #{@blog.title}
+p= @blog.body
+
+hr
+
+h6
+  | created_by: #{@blog.user.user_name}
+
+hr
+
+- if comments = @blog.all_comments
+  hr
+  h4 Comments:
+  #blog-comments
+    - comments.each do |comment|
+      = render 'all_comments/show', comment: comment
+
+hr
+- if current_user.present?
+  h4 Add comment
+  = render 'all_comments/form', blog: @blog
+- else
+  p Only authenticated users can add comments

@@ -1,0 +1,20 @@
+= link_to new_blog_path, class: 'btn btn-primary' do
+  | Create story
+hr
+
+- @blogs.each do |blog|
+  = link_to blog_path(blog), class: 'blog-block' do
+    h4
+      | #{blog.title.truncate(10)} 
+      span
+        | (#{blog.user.user_name}):
+    h5= blog.body.truncate(20)
+  br
+
+- if @blogs.size.zero?
+  h3.text-center No stories
+
+- if current_user.present?
+  hr
+  | You have #{current_user.blogs.size} 
+  | #{'story'.pluralize(current_user.blogs.size)}

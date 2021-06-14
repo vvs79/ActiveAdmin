@@ -1,0 +1,6 @@
+= simple_form_for @comment, remote: true do |f|
+  = f.input :title
+  = f.input :body
+  = f.hidden_field :blog_id, value: blog.id
+  / = f.hidden_field :user_id, value: current_user.id
+  = f.submit "Save", class: 'btn btn-success'
